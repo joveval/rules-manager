@@ -4,12 +4,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>pe.joseval.util</groupId>
 	<artifactId>RulesManager</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-alpha</version>
 	<name>Rules Manager</name>
 	<description>Logic rules manager to generate and validate.</description>
 
 	<properties>
 		<java.version>1.8</java.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 
 	<licenses>

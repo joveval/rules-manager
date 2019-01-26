@@ -33,16 +33,17 @@ public class Condition {
 		}
 		if (!(condition.isPermitNulls())) {
 
+			if (factParams.get(spectedParamName) == null) {
+				throw new ConditionValidationException("spectedParamName must be present in factParams");
+			}
 			for (int i = 0; i < condition.getSpectedParamsNumber(); i++) {
 				if (spectedValues.get(i) == null) {
-					throw new ConditionValidationException("number of parameters must be "
+					throw new ConditionValidationException("number of spected of parameters must be "
 							+ condition.getSpectedParamsNumber() + " in conditionType " + condition.name());
 				}
 			}
 
-			if (factParams.get(spectedParamName) == null) {
-				throw new ConditionValidationException("spectedParamName must be present in factParams");
-			}
+			
 
 		}
 	}

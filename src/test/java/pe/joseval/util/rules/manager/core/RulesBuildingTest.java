@@ -1,7 +1,6 @@
 package pe.joseval.util.rules.manager.core;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.*;
 import static pe.joseval.util.rules.manager.core.StaticConditions.BeginsWith;
 import static pe.joseval.util.rules.manager.core.StaticConditions.Between;
 import static pe.joseval.util.rules.manager.core.StaticConditions.Contains;
@@ -65,16 +64,16 @@ class RulesBuildingTest {
 				EndsWith("a", null), GreaterOrEqualThan("a", null), GreaterThan("a", null),Match("b", "\n") };
 
 		for (Condition condition : conditions) {
-			Executable ex = new Executable() {
+			boolean res=false;
+			try {
+				res = condition.runValidation(factParams);
+			} catch (ConditionValidationException e) {
+				// TODO Auto-generated catch block
+				System.out.println(e.getMessage());
+				//e.printStackTrace();
+			}
 
-				@Override
-				public void execute() throws Throwable {
-					// TODO Auto-generated method stub
-					condition.runValidation(factParams);
-				}
-			};
-
-			assertThrows(ConditionValidationException.class, ex);
+			assertFalse(res);
 		}
 
 	}
