@@ -1,6 +1,7 @@
 package pe.joseval.util.rules.manager.core;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static pe.joseval.util.rules.manager.core.StaticConditions.BeginsWith;
 import static pe.joseval.util.rules.manager.core.StaticConditions.Between;
 import static pe.joseval.util.rules.manager.core.StaticConditions.Contains;
@@ -23,10 +24,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
+import org.junit.Test;
 
-class RulesBuildingTest {
+
+public class RulesBuildingTest {
 
 	Map<String, Object> factParams = new HashMap<>();
 
@@ -44,7 +45,7 @@ class RulesBuildingTest {
 		factParams.put("i", new Double(20.0));
 		/*String values*/
 		factParams.put("j", "hola");
-		factParams.put("k", "asdfñlkjadlf jljfalsdfja");
+		factParams.put("k", "asdflkjadlf jljfalsdfja");
 		factParams.put("l", "asdf asddfiui4iiorepqwurperr");
 		factParams.put("m", "123");
 		
@@ -58,7 +59,7 @@ class RulesBuildingTest {
 
 	/* Test to validate correct number of parameters */
 	@Test
-	void testAThowingCorrectErrors() {
+	public void testAThowingCorrectErrors() {
 
 		Condition[] conditions = new Condition[] { Equals("a", null), NotEquals("a", null), BeginsWith("a", null),
 				EndsWith("a", null), GreaterOrEqualThan("a", null), GreaterThan("a", null),Match("b", "\n") };
@@ -79,7 +80,7 @@ class RulesBuildingTest {
 	}
 	
 	@Test
-	void testBCorrectNumberOperations() {
+	public void testBCorrectNumberOperations() {
 		Condition[] conditions = new Condition[] { LessThan("d", 40), LessOrEqualThan("e", 2), GreaterThan("f", 1),
 				GreaterOrEqualThan("g", 15) };
 		
@@ -98,7 +99,7 @@ class RulesBuildingTest {
 	
 	
 	@Test
-	void testBCorrectStringOperations() {
+	public void testBCorrectStringOperations() {
 		Condition[] conditions = new Condition[] { BeginsWith("j", "ho"), EndsWith("k", "dfja"),Contains("l", "pe"),NotContains("l", "1"), Match("m", "\\d{2,3}"),NoMatch("m","\\d{1}" ) };
 		
 		for (Condition condition : conditions) {
@@ -117,7 +118,7 @@ class RulesBuildingTest {
 	
 	
 	@Test
-	void testDDatesComparition() throws ParseException {
+	public void testDDatesComparition() throws ParseException {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Date dx = sdf.parse("21/12/2019");
