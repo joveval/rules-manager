@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Singular;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import lombok.Builder.Default;
 import static pe.joseval.util.rules.manager.core.BigDecimalUtil.*;
@@ -17,6 +18,7 @@ import static pe.joseval.util.rules.manager.core.BigDecimalUtil.*;
 @Data
 @AllArgsConstructor
 @Builder(builderClassName = "Builder", builderMethodName = "builder")
+@ToString(of="stringResult")
 public class Condition {
 
 	private String spectedParamName;
@@ -28,24 +30,30 @@ public class Condition {
 	private String stringResult = "First run and then print these variable";
 
 	private void validate(Map<String, Object> factParams) throws ConditionValidationException {
-		if (spectedParamName == null) {
-				throw new ConditionValidationException("spectedParamName must not be null.");
-		}
-		if (!(condition.isPermitNulls())) {
 
-			if (factParams.get(spectedParamName) == null) {
-				throw new ConditionValidationException("spectedParamName must be present in factParams");
+		if (factParams == null) {
+			if (!condition.equals(ConditionType.TRUE)) {
+				throw new ConditionValidationException("factParams must not be null.");
 			}
-			for (int i = 0; i < condition.getSpectedParamsNumber(); i++) {
-				if (spectedValues.get(i) == null) {
-					throw new ConditionValidationException("number of spected of parameters must be "
-							+ condition.getSpectedParamsNumber() + " in conditionType " + condition.name());
+		}
+		if (!condition.equals(ConditionType.TRUE)&&!condition.getValue().equals(ConditionCategory.LOGIC)) {
+			if (spectedParamName == null) {
+				throw new ConditionValidationException("spectedParamName must not be null.");
+			}
+			if (!(condition.isPermitNulls())) {
+
+				if (factParams.get(spectedParamName) == null) {
+					throw new ConditionValidationException("spectedParamName must be present in factParams");
+				}
+				for (int i = 0; i < condition.getSpectedParamsNumber(); i++) {
+					if (spectedValues.get(i) == null) {
+						throw new ConditionValidationException("number of spected of parameters must be "
+								+ condition.getSpectedParamsNumber() + " in conditionType " + condition.name());
+					}
 				}
 			}
-
-			
-
 		}
+
 	}
 
 	public Boolean runValidation(Map<String, Object> factParams) throws ConditionValidationException {
@@ -161,6 +169,9 @@ public class Condition {
 				break;
 			case NULL:
 				response = actualNeutral == null;
+				break;
+			case TRUE:
+				response = true;
 				break;
 			default:
 				System.out.println("It's possible the existence of a bug problem here.");

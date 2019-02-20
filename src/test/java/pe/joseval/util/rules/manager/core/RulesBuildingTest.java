@@ -2,19 +2,7 @@ package pe.joseval.util.rules.manager.core;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static pe.joseval.util.rules.manager.core.StaticConditions.BeginsWith;
-import static pe.joseval.util.rules.manager.core.StaticConditions.Between;
-import static pe.joseval.util.rules.manager.core.StaticConditions.Contains;
-import static pe.joseval.util.rules.manager.core.StaticConditions.EndsWith;
-import static pe.joseval.util.rules.manager.core.StaticConditions.Equals;
-import static pe.joseval.util.rules.manager.core.StaticConditions.GreaterOrEqualThan;
-import static pe.joseval.util.rules.manager.core.StaticConditions.GreaterThan;
-import static pe.joseval.util.rules.manager.core.StaticConditions.LessOrEqualThan;
-import static pe.joseval.util.rules.manager.core.StaticConditions.LessThan;
-import static pe.joseval.util.rules.manager.core.StaticConditions.Match;
-import static pe.joseval.util.rules.manager.core.StaticConditions.NoMatch;
-import static pe.joseval.util.rules.manager.core.StaticConditions.NotContains;
-import static pe.joseval.util.rules.manager.core.StaticConditions.NotEquals;
+import static pe.joseval.util.rules.manager.core.StaticConditions.*;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -139,4 +127,34 @@ public class RulesBuildingTest {
 			assertTrue(res);
 		}
 	}
+	
+	@Test
+	public void testDTrueTest() {
+		Condition condition = True();
+		boolean res = false;
+		try {
+			res = condition.runValidation(factParams);
+		} catch (ConditionValidationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertTrue(res);
+	}
+	
+	@Test
+	public void testELogicTest() {
+		Condition condition = And(True(),Not(True()));
+		boolean res = true;
+		try {
+			res = condition.runValidation(factParams);
+		} catch (ConditionValidationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertFalse(res);
+	}
+	
+	
+	
+	
 }

@@ -3,6 +3,10 @@ package pe.joseval.util.rules.manager.core;
 import java.util.Date;
 
 public class StaticConditions {
+	
+	public static Condition True() {
+		return new Condition.Builder().condition(ConditionType.TRUE).build();
+	}
 	public static Condition Or(Condition... operators) {
 		return logicOperator(ConditionType.OR, operators);
 	}

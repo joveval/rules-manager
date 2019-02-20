@@ -8,6 +8,7 @@ import pe.joseval.util.rules.manager.core.ConditionCategory;
 @Getter
 @AllArgsConstructor
 public enum ConditionType {
+	TRUE(ConditionCategory.NEUTRAL," TRUE "," ( "," ) ",false,0),
 	OR(ConditionCategory.LOGIC," or "," ( "," ) ",false,0), 
 	AND(ConditionCategory.LOGIC," and "," ( "," ) ",false,0), 
 	NOT(ConditionCategory.LOGIC," ~ "," ( "," ) ",false,0),
