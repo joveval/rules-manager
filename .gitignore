@@ -4,3 +4,4 @@ target/
 */.settings/*
 .settings/*
 /**/*.jpg
+release.properties
