@@ -14,8 +14,7 @@ You could define a rule as a tree of logic, arithmetic, string and neutral compa
 * Define rule:
 
 ``` java
-Condition condition = Or( IsNull("p"),
-						  NotNull("x") );
+Condition condition = Or( IsNull("p"),NotNull("x") );
 ```
 * Populate a map of actual values:
 
