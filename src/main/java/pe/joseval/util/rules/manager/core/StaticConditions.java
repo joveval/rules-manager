@@ -4,81 +4,81 @@ import java.util.Date;
 
 public class StaticConditions {
 	
-	public static Condition True() {
+	public static Condition lTrue() {
 		return new Condition.Builder().condition(ConditionType.TRUE).build();
 	}
-	public static Condition Or(Condition... operators) {
+	public static Condition lOr(Condition... operators) {
 		return logicOperator(ConditionType.OR, operators);
 	}
 
-	public static Condition And(Condition... operators) {
+	public static Condition lAnd(Condition... operators) {
 
 		return logicOperator(ConditionType.AND, operators);
 	}
 
-	public static Condition Not(Condition operator) {
+	public static Condition lNot(Condition operator) {
 
 		return logicOperator(ConditionType.NOT, operator);
 	}
 
-	public static Condition Between(String paramName, Date dateBefore, Date dateAfter) {
+	public static Condition between(String paramName, Date dateBefore, Date dateAfter) {
 		return new Condition.Builder().condition(ConditionType.BETWEEN).spectedParamName(paramName)
 				.spectedValue(dateAfter).spectedValue(dateBefore).build();
 	}
 
-	public static Condition Equals(String paramName, Object espectedValue) {
+	public static Condition lEquals(String paramName, Object espectedValue) {
 		return neutralBinaryOperator(ConditionType.EQUALS, paramName, espectedValue);
 	}
 
-	public static Condition NotEquals(String paramName, Object espectedValue) {
+	public static Condition lNotEquals(String paramName, Object espectedValue) {
 		return neutralBinaryOperator(ConditionType.NEQUALS, paramName, espectedValue);
 	}
 
-	public static Condition LessThan(String paramName, Object espectedValue) {
+	public static Condition lessThan(String paramName, Object espectedValue) {
 		return arithmeticOperator(ConditionType.LTHAN, paramName, espectedValue);
 	}
 
-	public static Condition LessOrEqualThan(String paramName, Object espectedValue) {
+	public static Condition lessOrEqualThan(String paramName, Object espectedValue) {
 		return arithmeticOperator(ConditionType.LETHAN, paramName, espectedValue);
 	}
 
-	public static Condition GreaterThan(String paramName, Object espectedValue) {
+	public static Condition greaterThan(String paramName, Object espectedValue) {
 		return arithmeticOperator(ConditionType.GTHAN, paramName, espectedValue);
 	}
 
-	public static Condition GreaterOrEqualThan(String paramName, Object espectedValue) {
+	public static Condition greaterOrEqualThan(String paramName, Object espectedValue) {
 		return arithmeticOperator(ConditionType.GETHAN, paramName, espectedValue);
 	}
 
-	public static Condition BeginsWith(String paramName, String spectedValue) {
+	public static Condition beginsWith(String paramName, String spectedValue) {
 		return stringOperator(ConditionType.BWITH, paramName, spectedValue);
 	}
 
-	public static Condition EndsWith(String paramName, String spectedValue) {
+	public static Condition endsWith(String paramName, String spectedValue) {
 		return stringOperator(ConditionType.EWITH, paramName, spectedValue);
 	}
 
-	public static Condition Match(String paramName, String spectedValue) {
+	public static Condition match(String paramName, String spectedValue) {
 		return stringOperator(ConditionType.MATCH, paramName, spectedValue);
 	}
 
-	public static Condition NoMatch(String paramName, String spectedValue) {
+	public static Condition noMatch(String paramName, String spectedValue) {
 		return stringOperator(ConditionType.NMATCH, paramName, spectedValue);
 	}
 
-	public static Condition Contains(String paramName, String spectedValue) {
+	public static Condition contains(String paramName, String spectedValue) {
 		return stringOperator(ConditionType.CONTAINS, paramName, spectedValue);
 	}
 
-	public static Condition NotContains(String paramName, String spectedValue) {
+	public static Condition notContains(String paramName, String spectedValue) {
 		return stringOperator(ConditionType.NCONTAINS, paramName, spectedValue);
 	}
 
-	public static Condition IsNull(String paramName) {
+	public static Condition isNull(String paramName) {
 		return neutralMonoOperator(ConditionType.NULL, paramName);
 	}
 
-	public static Condition NotNull(String paramName) {
+	public static Condition notNull(String paramName) {
 		return neutralMonoOperator(ConditionType.NOTNULL, paramName);
 	}
 

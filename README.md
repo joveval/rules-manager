@@ -19,19 +19,19 @@ Clone this project in your PC. Then install it using Maven:
 ## Use
 You could define a rule as a tree of logic, arithmetic, string and neutral comparisons:
 
-* Define rule:
+*	Define rule:
 
 ``` java
-Condition condition = Or( IsNull("p"),NotNull("x") );
+Condition condition = lOr( isNull( "p" ), notNull( "x" ) );
 ```
-* Populate a map of actual values:
+*	Populate a map of actual values:
 
 ``` java
 Map<String, Object> factParams = new HashMap<>();
 factParams.put("p", "1");
 factParams.put("x", null);
 ```
-* Validate condition against actual values:
+*	Validate condition against actual values:
 
 ``` java
 try {

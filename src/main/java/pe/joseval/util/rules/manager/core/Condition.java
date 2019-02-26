@@ -31,11 +31,8 @@ public class Condition {
 
 	private void validate(Map<String, Object> factParams) throws ConditionValidationException {
 
-		if (factParams == null) {
-			if (!condition.equals(ConditionType.TRUE)) {
-				throw new ConditionValidationException("factParams must not be null.");
-			}
-		}
+		if (factParams == null && !condition.equals(ConditionType.TRUE))throw new ConditionValidationException("factParams must not be null.");
+			
 		if (!condition.equals(ConditionType.TRUE)&&!condition.getValue().equals(ConditionCategory.LOGIC)) {
 			if (spectedParamName == null) {
 				throw new ConditionValidationException("spectedParamName must not be null.");

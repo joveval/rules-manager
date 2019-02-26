@@ -17,7 +17,7 @@ import org.junit.Test;
 
 public class RulesBuildingTest {
 
-	Map<String, Object> factParams = new HashMap<>();
+	private Map<String, Object> factParams = new HashMap<>();
 
 	public RulesBuildingTest() throws ParseException {
 		// TODO Auto-generated constructor stub
@@ -49,8 +49,8 @@ public class RulesBuildingTest {
 	@Test
 	public void testAThowingCorrectErrors() {
 
-		Condition[] conditions = new Condition[] { Equals("a", null), NotEquals("a", null), BeginsWith("a", null),
-				EndsWith("a", null), GreaterOrEqualThan("a", null), GreaterThan("a", null),Match("b", "\n") };
+		Condition[] conditions = new Condition[] { lEquals("a", null), lNotEquals("a", null), beginsWith("a", null),
+				endsWith("a", null), greaterOrEqualThan("a", null), greaterThan("a", null),match("b", "\n") };
 
 		for (Condition condition : conditions) {
 			boolean res=false;
@@ -69,8 +69,8 @@ public class RulesBuildingTest {
 	
 	@Test
 	public void testBCorrectNumberOperations() {
-		Condition[] conditions = new Condition[] { LessThan("d", 40), LessOrEqualThan("e", 2), GreaterThan("f", 1),
-				GreaterOrEqualThan("g", 15) };
+		Condition[] conditions = new Condition[] { lessThan("d", 40), lessOrEqualThan("e", 2), greaterThan("f", 1),
+				greaterOrEqualThan("g", 15) };
 		
 		for (Condition condition : conditions) {
 			boolean res=false;
@@ -88,7 +88,7 @@ public class RulesBuildingTest {
 	
 	@Test
 	public void testBCorrectStringOperations() {
-		Condition[] conditions = new Condition[] { BeginsWith("j", "ho"), EndsWith("k", "dfja"),Contains("l", "pe"),NotContains("l", "1"), Match("m", "\\d{2,3}"),NoMatch("m","\\d{1}" ) };
+		Condition[] conditions = new Condition[] { beginsWith("j", "ho"), endsWith("k", "dfja"),contains("l", "pe"),notContains("l", "1"),match("m", "\\d{2,3}"),noMatch("m","\\d{1}" ) };
 		
 		for (Condition condition : conditions) {
 			boolean res=false;
@@ -113,7 +113,7 @@ public class RulesBuildingTest {
 		Date d1 = sdf.parse("20/12/2019");
 		Date d2 = sdf.parse("24/12/2019");
 		
-		Condition[] conditions = new Condition[] { Between("n", d1,d2),Equals("n",dx) };
+		Condition[] conditions = new Condition[] { between("n", d1,d2),lEquals("n",dx) };
 		
 		for (Condition condition : conditions) {
 			boolean res=false;
@@ -130,7 +130,7 @@ public class RulesBuildingTest {
 	
 	@Test
 	public void testDTrueTest() {
-		Condition condition = True();
+		Condition condition = lTrue();
 		boolean res = false;
 		try {
 			res = condition.runValidation(factParams);
@@ -143,7 +143,7 @@ public class RulesBuildingTest {
 	
 	@Test
 	public void testELogicTest() {
-		Condition condition = And(True(),Not(True()));
+		Condition condition = lAnd(lTrue(),lNot(lTrue()));
 		boolean res = true;
 		try {
 			res = condition.runValidation(factParams);
@@ -157,7 +157,7 @@ public class RulesBuildingTest {
 	@Test
 	public void testDNULLs() {
 		//Object o1,o2=new String();
-		Condition condition = Or(IsNull("p"),NotNull("x"));
+		Condition condition = lOr(isNull("p"),notNull("x"));
 		boolean res = false;
 		try {
 			res = condition.runValidation(factParams);
