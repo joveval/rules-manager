@@ -1,4 +1,7 @@
 # Rules manager
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c796636d6fde4031834c68692c23983b)](https://app.codacy.com/app/joveval/rules-manager?utm_source=github.com&utm_medium=referral&utm_content=joveval/rules-manager&utm_campaign=Badge_Grade_Dashboard)
+
 Rules manager is a java package to define a rule and validate it through the comparison of expected against actual values.
 
 ## Installation
