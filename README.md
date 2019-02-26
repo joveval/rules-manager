@@ -32,3 +32,6 @@ try {
 	//
 }
 ```
+
+## License
+MIT - See [LICENSE](https://github.com/joveval/rules-manager/blob/master/LICENSE) for more details.
