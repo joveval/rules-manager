@@ -1,6 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.joveval.util</groupId>
 	<artifactId>RulesManager</artifactId>
@@ -36,7 +34,7 @@
 		<connection>scm:git:git://github.com/joveval/rules-manager.git</connection>
 		<developerConnection>scm:git:git@github.com:joveval/rules-manager.git</developerConnection>
 		<url>https://github.com/joveval/rules-manager</url>
-		<tag>HEAD</tag>
+		<tag>RulesManager-1.0.0</tag>
 	</scm>
 	<profiles>
 		<!-- GPG Signature on release -->
@@ -150,6 +148,7 @@
 					<execution>
 						<id>attach-javadoc</id>
 						<goals>
+							<goal>jar</goal>
 						</goals>
 					</execution>
 				</executions>
