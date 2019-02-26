@@ -154,6 +154,21 @@ public class RulesBuildingTest {
 		assertFalse(res);
 	}
 	
+	@Test
+	public void testDNULLs() {
+		//Object o1,o2=new String();
+		Condition condition = Or(IsNull("p"),NotNull("x"));
+		boolean res = false;
+		try {
+			res = condition.runValidation(factParams);
+		} catch (ConditionValidationException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			//res = false;
+			System.out.println("NULLS issue"+e.getMessage());
+		}
+		assertTrue(res);
+	}
 	
 	
 	
