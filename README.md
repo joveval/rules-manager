@@ -7,7 +7,15 @@ Clone this project in your PC. Then install it using Maven:
 ``` batch
 ./mvn install
 ```
+## POM reference
 
+``` xml
+<dependency>
+	<groupId>pe.joseval.util</groupId>
+	<artifactId>RulesManager</artifactId>
+	<version>1.0.0-alpha</version>
+</dependency>
+```
 ## Use
 You could define a rule as a tree of logic, arithmetic, string and neutral comparisons:
 
