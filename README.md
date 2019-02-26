@@ -3,7 +3,8 @@ Rules manager is a java package to define a rule and validate it through the com
 
 ## Installation
 Clone this project in your PC. Then install it using Maven:
-```
+
+``` batch
 ./mvn install
 ```
 
@@ -12,20 +13,20 @@ You could define a rule as a tree of logic, arithmetic, string and neutral compa
 
 * Define rule:
 
-```
+``` java
 Condition condition = Or( IsNull("p"),
-								 NotNull("x") );
+						  NotNull("x") );
 ```
 * Populate a map of actual values:
 
-```
+``` java
 Map<String, Object> factParams = new HashMap<>();
 factParams.put("p", "1");
 factParams.put("x", null);
 ```
 * Validate condition against actual values:
 
-```
+``` java
 try {
 	res = condition.runValidation(factParams);
 } catch (ConditionValidationException e) {
