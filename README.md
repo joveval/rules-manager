@@ -14,7 +14,7 @@ Clone this project in your PC. Then install it using Maven:
 
 ``` xml
 <dependency>
-	<groupId>pe.joseval.util</groupId>
+	<groupId>io.github.joveval.util</groupId>
 	<artifactId>RulesManager</artifactId>
 	<version>1.0.0-alpha</version>
 </dependency>
