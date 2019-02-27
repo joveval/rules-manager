@@ -1,9 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.joveval.util</groupId>
 	<artifactId>RulesManager</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0-alpha</version>
 	<name>Rules Manager</name>
+	<url>https://github.com/joveval/rules-manager</url>
 	<description>Logic rules manager to generate and validate.</description>
 
 	<properties>
@@ -34,19 +37,19 @@
 		<connection>scm:git:git://github.com/joveval/rules-manager.git</connection>
 		<developerConnection>scm:git:git@github.com:joveval/rules-manager.git</developerConnection>
 		<url>https://github.com/joveval/rules-manager</url>
-		<tag>RulesManager-1.0.0</tag>
+		<tag>RulesManager-1.0.0-alpha</tag>
 	</scm>
 	<profiles>
 		<!-- GPG Signature on release -->
 		<profile>
-			<id>release-sign-artifacts</id>
+			<id>ossrh</id>
 			<activation>
-				<property>
-					<name>performRelease</name>
-					<value>true</value>
-				</property>
+				<activeByDefault>true</activeByDefault>
 			</activation>
-			<build>
+			 <properties>
+            	<gpg.executable>C:\Program Files (x86)\GnuPG\bin\gpg.exe</gpg.executable>
+           	</properties>
+			<!-- <build>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -63,7 +66,7 @@
 						</executions>
 					</plugin>
 				</plugins>
-			</build>
+			</build> -->
 		</profile>
 	</profiles>
 
@@ -121,7 +124,6 @@
 				<configuration>
 					<outputDirectory>${project.build.directory}</outputDirectory>
 					<finalName>${project.artifactId}-${project.version}</finalName>
-					<attach>false</attach>
 				</configuration>
 				<executions>
 					<execution>
@@ -141,7 +143,6 @@
 				<configuration>
 					<outputDirectory>${project.build.directory}</outputDirectory>
 					<finalName>${project.artifactId}-${project.version}</finalName>
-					<attach>false</attach>
 				</configuration>
 
 				<executions>
@@ -149,6 +150,22 @@
 						<id>attach-javadoc</id>
 						<goals>
 							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.6</version>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
 						</goals>
 					</execution>
 				</executions>
@@ -193,12 +210,26 @@
 				<artifactId>nexus-staging-maven-plugin</artifactId>
 				<version>1.6.7</version>
 				<extensions>true</extensions>
+
+				<executions>
+					<execution>
+						<id>default-deploy</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+
 				<configuration>
 					<serverId>ossrh</serverId>
 					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
 					<autoReleaseAfterClose>true</autoReleaseAfterClose>
 				</configuration>
 			</plugin>
+
+
+
 		</plugins>
 	</build>
 
