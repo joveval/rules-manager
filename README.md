@@ -16,7 +16,7 @@ Clone this project in your PC. Then install it using Maven:
 <dependency>
 	<groupId>io.github.joveval.util</groupId>
 	<artifactId>RulesManager</artifactId>
-	<version>1.0.0-alpha</version>
+	<version>1.0.1-alpha</version>
 </dependency>
 ```
 ## Use

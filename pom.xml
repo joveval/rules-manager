@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.joveval.util</groupId>
 	<artifactId>RulesManager</artifactId>
-	<version>1.0.0-alpha</version>
+	<version>1.0.1-alpha</version>
 	<name>Rules Manager</name>
 	<url>https://github.com/joveval/rules-manager</url>
 	<description>Logic rules manager to generate and validate.</description>

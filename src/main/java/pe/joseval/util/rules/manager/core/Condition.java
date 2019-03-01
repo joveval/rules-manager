@@ -56,6 +56,13 @@ public class Condition {
 	public Boolean runValidation(Map<String, Object> factParams) throws ConditionValidationException {
 		String conditionString = "";
 		boolean response = false;
+		/* Return false if espected param is not present in factParams */
+		if(factParams.containsKey(spectedParamName)) {
+			
+			log.warn("Specting "+spectedParamName+", for condition "+condition+", to be present in factParams but is not so defaulting to false");
+			return response;
+		}
+		
 		validate(factParams);
 		switch (condition.getValue()) {
 		case ARITHMETIC:
