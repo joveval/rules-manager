@@ -29,7 +29,7 @@ public class Condition {
 	@Default
 	private String stringResult = "First run and then print these variable";
 
-	private void validate(Map<String, Object> factParams) throws ConditionValidationException {
+	private boolean validate(Map<String, Object> factParams) throws ConditionValidationException {
 
 		if (factParams == null && !condition.equals(ConditionType.TRUE))throw new ConditionValidationException("factParams must not be null.");
 			
@@ -40,30 +40,28 @@ public class Condition {
 			if (!(condition.isPermitNulls())) {
 
 				if (factParams.get(spectedParamName) == null) {
-					throw new ConditionValidationException("spectedParamName must be present in factParams");
+					//throw new ConditionValidationException("spectedParamName must be present in factParams");
+					log.warn("Specting "+spectedParamName+", for condition "+condition+", to be present in factParams but is not so defaulting to false");
+					return false;
 				}
 				for (int i = 0; i < condition.getSpectedParamsNumber(); i++) {
 					if (spectedValues.get(i) == null) {
-						throw new ConditionValidationException("number of spected of parameters must be "
+						throw new ConditionValidationException("number of spected parameters must be "
 								+ condition.getSpectedParamsNumber() + " in conditionType " + condition.name());
 					}
 				}
 			}
 		}
 
+		return true;
 	}
 
 	public Boolean runValidation(Map<String, Object> factParams) throws ConditionValidationException {
 		String conditionString = "";
 		boolean response = false;
-		/* Return false if espected param is not present in factParams */
-		if(factParams.containsKey(spectedParamName)) {
-			
-			log.warn("Specting "+spectedParamName+", for condition "+condition+", to be present in factParams but is not so defaulting to false");
-			return response;
-		}
 		
-		validate(factParams);
+		if(!validate(factParams)) return false;
+		
 		switch (condition.getValue()) {
 		case ARITHMETIC:
 			BigDecimal spectedNumber = null;
